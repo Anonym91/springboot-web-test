@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js}"></script>
+    <link th:href="@{https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/default.css}" rel="stylesheet"/>
+    <link rel="icon" th:href="@{/images/205311905.jpg}" type="image/x-icon"/>
+    <meta charset="UTF-8"/>
+    <title>用户管理</title>
+</head>
+
+<body>
+<div class="contentDiv">
+
+    <h5>TEST 用户管理系统 </h5>
+
+    <legend>
+        <strong>用户管理</strong>
+    </legend>
+
+    <form th:action="@{/user/{action}(action=${action})}"  method="post" class="form-horizontal">
+
+        <input type="hidden"  id="user_id" name="id"  th:value="${user.id}"/>
+
+        <div class="form-group">
+            <label for="user_name" class="col-sm-2 control-label">姓名:</label>
+            <div class="col-xs-4">
+                <input type="text" class="form-control" id="user_name" name="name" th:value="${user.name}" th:field="*{user.name}"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="user_birth" class="col-sm-2 control-label">生日:</label>
+            <div class="col-xs-4">
+                <input type="text" class="form-control" id="user_birth" name="birthday" th:value="${user.birthday}" th:field="*{user.birthday}"/> 
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="user_introduction" class="col-sm-2 control-label">简介:</label>
+            <div class="col-xs-4">
+                <textarea class="form-control" id="user_introduction" rows="3" name="description" th:value="${user.description}"
+						th:field="*{user.description}"></textarea> 
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input class="btn btn-primary" type="submit" value="提交" onclick="user/updateByID"/>
+                <input class="btn" type="button" value="返回" onclick="history.back()"/>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
